@@ -18,6 +18,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	__block int assignValue;
+	
+	int (^blockName)(int value1, float value2) = ^(int value1, float value2){
+		assignValue = value1;
+		NSLog(@"block evaulated with int %i and float %f", value1, value2);
+		return assignValue;
+	};
+	
+	int returnFromBlock = blockName(44, 0.5);
+	NSLog(@"%i", returnFromBlock);
 }
 
 - (void)didReceiveMemoryWarning
